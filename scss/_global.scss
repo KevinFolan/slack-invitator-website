@@ -1,0 +1,37 @@
+body {
+  @include body-font;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+html { 
+  background: url('../img/aws.meetup.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include body-font;
+  font-weight: 700;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.container {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.40);
+}
+
+.hidden {
+  display: none;
+}

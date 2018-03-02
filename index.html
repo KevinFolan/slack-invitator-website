@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>AWS Honolulu Slack Invite</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/landing-page.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <!-- <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="btn btn-primary" href="#">Sign In</a>
+      </div>
+    </nav> -->
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">AWS Honolulu User Group</h1>
+          <h4 class="mb-5">Please fill the form below to join our Slack group!!!</h4>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-9 mx-auto">
+          <form id="signupForm">
+            <div class="form-row">
+              <div class="col-12 col-md-6 offset-md-3 mb-2 mb-md-0">
+                <input type="name" id="userName" class="form-control form-control-lg" placeholder="Name...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-12 col-md-6 offset-md-3 mb-2 mb-md-0">
+                <input type="email" id="userEmail" class="form-control form-control-lg" placeholder="Email...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-12 col-md-6 offset-md-3 mb-2 mb-md-0">
+                <div id="success-alert" class="alert alert-success hidden" role="alert">
+                  <strong>Well done!</strong>
+                  <span id="success-message"></span>
+                </div>
+                <div id="warning-alert" class="alert alert-warning hidden" role="alert">
+                  <strong>Woots!</strong>
+                  <span id="warning-message"></span>
+                </div>
+                <div id="error-alert" class="alert alert-danger hidden" role="alert">
+                  <strong>Oh snap!</strong>
+                  <span id="error-message"></span>
+                </div>
+                <button type="submit" id="btnSignup" class="btn btn-block btn-lg btn-success">Sign up!
+                </button>
+                <button type="submit" id="btnSignupBlocked" class="hidden disabled btn btn-block btn-lg btn-success">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    var SLACK_INVITATOR_API = "https://djmbdfz0y9.execute-api.us-east-1.amazonaws.com/prod/invite"
+    $(function () {
+
+      $("#signupForm").on('submit', function () {
+        var form = $(this)
+
+        // Make HTTP call to signup
+        var url = SLACK_INVITATOR_API
+        var data = {
+          user: {
+            name: $("#userName").val(),
+            email: $("#userEmail").val()
+          }
+        }
+        $.ajax({
+          type: "POST",
+          url: url,
+          contentType: 'application/json; charset=utf-8',
+          data: JSON.stringify(data),
+        }).done(function (response) {
+          form.find("input").val("");
+          if (response.success === true) {
+            $("#success-alert").removeClass("hidden");
+            $("#success-message").text(response.message)
+          } else {
+            $("#warning-alert").removeClass("hidden");
+            $("#warning-message").text(response.message)
+          }
+        }).fail(function (err) {
+          console.log(err.responseJSON)
+          $("#error-alert").removeClass("hidden")
+        }).always(function () {
+          $("#btnSignupBlocked").addClass("hidden")
+          $("#btnSignup").removeClass("hidden")
+        })
+        $("#error-alert").addClass("hidden")
+        $("#success-alert").addClass("hidden")
+        $("#warning-alert").addClass("hidden")
+        $("#btnSignup").addClass("hidden")
+        $("#btnSignupBlocked").removeClass("hidden")
+
+        event.preventDefault()
+        return
+      })
+    })
+  </script>
+</body>
+
+</html>
