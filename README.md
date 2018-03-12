@@ -12,6 +12,16 @@ On Mac, got an EACCESS error, so had to run with admin rights
 ```
 sudo npm install -g gulp
 ```
+Then changed to this directory
+```
+cd /users/<user>/documents/github/slack-invitator-website
+```
+
+Then I got an error about gulp-sass
+```
+npm install gulp-sass --save-dev
+```
+
 
 You can launch the website on your machine by using the following command:
 
