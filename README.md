@@ -18,7 +18,10 @@ You can launch the website on your machine by using the following command:
 ```
 gulp dev
 ```
-On MacOS, error "no gulpfile found"
+On MacOS, error "no gulpfile found", found useful info here:
+http://www.codingdefined.com/2015/04/how-to-solve-no-gulpfile-found.html
+
+
 
 This will launch a lite server in your machine that will let you browse the website and it will refresh automatically upon file changes.
 
