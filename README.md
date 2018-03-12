@@ -8,11 +8,17 @@ To work on the websites and make changes you should install gulp globally using 
 npm install -g gulp
 ```
 
+On Mac, got an EACCESS error, so had to run with admin rights
+```
+sudo npm install -g gulp
+```
+
 You can launch the website on your machine by using the following command:
 
 ```
 gulp dev
 ```
+
 
 This will launch a lite server in your machine that will let you browse the website and it will refresh automatically upon file changes.
 
